@@ -262,14 +262,3 @@ newDiv.classList = "space-y-6";
 }
 
 
-deleteBtn.forEach(element => {
-  element.addEventListener("click", function(){
-    let parent = element.parentNode.parentNode;
-   console.log(parent);
-   parent.remove();
-calculateCount();
-
-  })
-
-  
-});

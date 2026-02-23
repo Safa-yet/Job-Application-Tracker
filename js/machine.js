@@ -28,6 +28,10 @@ let interviewEmpty = document.getElementById("interview-empty");
 let rejectEmpty = document.getElementById("reject-empty")
 
 
+let deleteBtn = document.querySelectorAll('.deleteBtn');
+
+
+
 
 let totalNum = document.querySelectorAll(".total");
 function calculateCount() {
@@ -193,8 +197,8 @@ function interviewRender() {
 newDiv.classList = "space-y-6";
     newDiv.innerHTML = `
         
-        <div class="joblist flex p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
-        <div class="space-y-3.5">
+        <div class="joblist sm:flex justify-between sm:text-left text-center p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
+        <div class="space-y-3.5 mb-3 sm:mb">
             <h1 class="text-2xl jobTitle">${interview.jobTitle}</h1>
             <p class="text-lg text-gray-700 job-position">${interview.jobPosition}</p>
             <p class="text-lg text-gray-700 work-type">${interview.workFlow}</p>
@@ -233,8 +237,8 @@ rejectEmpty.classList.add("hidden")
 newDiv.classList = "space-y-6";
     newDiv.innerHTML = `
         
-        <div class="joblist flex p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
-        <div class="space-y-3.5">
+        <div class="joblist sm:flex justify-between sm:text-left text-center p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
+        <div class="space-y-3.5 mb-3 sm:mb">
             <h1 class="text-2xl jobTitle">${reject.jobTitle}</h1>
             <p class="text-lg text-gray-700 job-position">${reject.jobPosition}</p>
             <p class="text-lg text-gray-700 work-type">${reject.workFlow}</p>
@@ -256,3 +260,16 @@ newDiv.classList = "space-y-6";
     rejectSec.appendChild(newDiv);
   }
 }
+
+
+deleteBtn.forEach(element => {
+  element.addEventListener("click", function(){
+    let parent = element.parentNode.parentNode;
+   console.log(parent);
+   parent.remove();
+calculateCount();
+
+  })
+
+  
+});

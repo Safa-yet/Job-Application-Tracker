@@ -4,6 +4,8 @@ let rejectList = [];
 
 let currentStatus = "all-job-list";
 
+let counter = document.getElementById("counter")
+
 let mainCon = document.getElementById("main");
 //  Counter
 let interViewCount = document.getElementById("interview-count");
@@ -20,16 +22,41 @@ let allBtn = document.getElementById("all-btn");
 let interviewBtn = document.getElementById("interview-btn");
 let rejectBtn = document.getElementById("reject-btn");
 
+// Empty Div
+
+let interviewEmpty = document.getElementById("interview-empty");
+let rejectEmpty = document.getElementById("reject-empty")
+
+
+
+let totalNum = document.querySelectorAll(".total");
 function calculateCount() {
+
+  let total = allJobList.children.length
+  let interviewCounter = interViewList.length;
+  let rejectCounter = rejectList.length
   let allJobCount = allJobList.children.length;
   // Total Counter
-  let totalNum = document.querySelectorAll(".total");
   totalNum.forEach((element) => {
     element.innerText = allJobCount;
   });
 
   interViewCount.innerText = interViewList.length;
   rejectCount.innerText = rejectList.length;
+
+  
+
+  if(currentStatus == "all-job-list"){
+    counter.innerText = ` ${total} of ${total} Jobs `
+  }
+  if(currentStatus == "interview-list"){
+    counter.innerText = ` ${interviewCounter} of ${total} Jobs `
+
+  }
+  if(currentStatus == "reject-list"){
+    counter.innerText = ` ${rejectCounter} of ${total} Jobs `
+
+  }
 }
 
 calculateCount();
@@ -62,6 +89,7 @@ function showOnly(id, btn) {
   if (id == "reject-list") {
     rejectRender();
   }
+  calculateCount();
 }
 
 mainCon.addEventListener("click", function (event) {
@@ -87,6 +115,7 @@ mainCon.addEventListener("click", function (event) {
 
     let exist = interViewList.find((item) => item.jobTitle == jobCard.jobTitle);
 
+    
     if (!exist) {
       interViewList.push(jobCard);
     }
@@ -95,6 +124,7 @@ mainCon.addEventListener("click", function (event) {
     rejectList = rejectList.filter(
       (item) => item.jobTitle !== jobCard.jobTitle,
     );
+
     console.log(currentStatus);
     if (currentStatus == "interview-list") {
       interviewRender();
@@ -139,12 +169,26 @@ mainCon.addEventListener("click", function (event) {
   
 });
 
+
+
+// Render
+
 function interviewRender() {
   interviewSec.innerHTML = "";
+  
+  if(interViewList.length === 0){
+    interviewSec.appendChild(interviewEmpty);
+    interviewEmpty.classList.remove("hidden");
+    return;
+  }
+  interviewEmpty.classList.add("hidden")
+
 
   for (let interview of interViewList) {
     console.log(interview);
 
+    
+    
     let newDiv = document.createElement("div");
 newDiv.classList = "space-y-6";
     newDiv.innerHTML = `
@@ -176,6 +220,12 @@ newDiv.classList = "space-y-6";
 function rejectRender() {
   rejectSec.innerHTML = "";
 
+  if(rejectList.length === 0){
+    rejectSec.appendChild(rejectEmpty);
+    rejectEmpty.classList.remove("hidden");
+    return;
+  }
+rejectEmpty.classList.add("hidden")
   for (let reject of rejectList) {
     console.log(reject);
 

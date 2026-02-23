@@ -5,7 +5,7 @@ let rejectList = [];
 let currentStatus = "all-job-list";
 
 //  Counter
-let counter = document.getElementById("counter")
+let counter = document.getElementById("counter");
 let interViewCount = document.getElementById("interview-count");
 let rejectCount = document.getElementById("rejected-count");
 let totalNum = document.querySelectorAll(".total");
@@ -21,24 +21,21 @@ let rejectSec = document.getElementById("reject-list");
 let allBtn = document.getElementById("all-btn");
 let interviewBtn = document.getElementById("interview-btn");
 let rejectBtn = document.getElementById("reject-btn");
-let deleteBtn = document.querySelectorAll('.deleteBtn');
+let deleteBtn = document.querySelectorAll(".deleteBtn");
 
 // Empty Div
 
 let interviewEmpty = document.getElementById("interview-empty");
-let rejectEmpty = document.getElementById("reject-empty")
-
-
+let rejectEmpty = document.getElementById("reject-empty");
 
 /*====================
  *  Update Counter
  ====================*/
 
 function calculateCount() {
-
-  let total = allJobList.children.length
+  let total = allJobList.children.length;
   let interviewCounter = interViewList.length;
-  let rejectCounter = rejectList.length
+  let rejectCounter = rejectList.length;
   let allJobCount = allJobList.children.length;
   // Total Counter
   totalNum.forEach((element) => {
@@ -48,18 +45,14 @@ function calculateCount() {
   interViewCount.innerText = interViewList.length;
   rejectCount.innerText = rejectList.length;
 
-  
-
-  if(currentStatus == "all-job-list"){
-    counter.innerText = ` ${total} of ${total} Jobs `
+  if (currentStatus == "all-job-list") {
+    counter.innerText = ` ${total} of ${total} Jobs `;
   }
-  if(currentStatus == "interview-list"){
-    counter.innerText = ` ${interviewCounter} of ${total} Jobs `
-
+  if (currentStatus == "interview-list") {
+    counter.innerText = ` ${interviewCounter} of ${total} Jobs `;
   }
-  if(currentStatus == "reject-list"){
-    counter.innerText = ` ${rejectCounter} of ${total} Jobs `
-
+  if (currentStatus == "reject-list") {
+    counter.innerText = ` ${rejectCounter} of ${total} Jobs `;
   }
 }
 
@@ -68,7 +61,6 @@ calculateCount();
 /*===============================
  *  Show Section And Button With Click
  =====================================*/
-
 
 function showOnly(id, btn) {
   allJobSec.classList.add("hidden");
@@ -103,8 +95,6 @@ function showOnly(id, btn) {
  *  Use Event Delegation on Main Conatiner
  =====================================*/
 
-
-
 mainCon.addEventListener("click", function (event) {
   if (event.target.classList.contains("interViewBtn")) {
     let parentNodes = event.target.parentNode.parentNode;
@@ -128,7 +118,6 @@ mainCon.addEventListener("click", function (event) {
 
     let exist = interViewList.find((item) => item.jobTitle == jobCard.jobTitle);
 
-    
     if (!exist) {
       interViewList.push(jobCard);
     }
@@ -178,35 +167,27 @@ mainCon.addEventListener("click", function (event) {
     }
     calculateCount();
   }
-
-  
 });
-
-
 
 /*===============================
  *  Interview Rednder Function
  =====================================*/
 
-
 function interviewRender() {
   interviewSec.innerHTML = "";
-  
-  if(interViewList.length === 0){
+
+  if (interViewList.length === 0) {
     interviewSec.appendChild(interviewEmpty);
     interviewEmpty.classList.remove("hidden");
     return;
   }
-  interviewEmpty.classList.add("hidden")
-
+  interviewEmpty.classList.add("hidden");
 
   for (let interview of interViewList) {
     console.log(interview);
 
-    
-    
     let newDiv = document.createElement("div");
-newDiv.classList = "space-y-6";
+    newDiv.classList = "space-y-6";
     newDiv.innerHTML = `
         
         <div class="joblist sm:flex justify-between sm:text-left text-center p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
@@ -237,21 +218,20 @@ newDiv.classList = "space-y-6";
  *  Reject Rednder Function
  =====================================*/
 
-
 function rejectRender() {
   rejectSec.innerHTML = "";
 
-  if(rejectList.length === 0){
+  if (rejectList.length === 0) {
     rejectSec.appendChild(rejectEmpty);
     rejectEmpty.classList.remove("hidden");
     return;
   }
-rejectEmpty.classList.add("hidden")
+  rejectEmpty.classList.add("hidden");
   for (let reject of rejectList) {
     console.log(reject);
 
     let newDiv = document.createElement("div");
-newDiv.classList = "space-y-6";
+    newDiv.classList = "space-y-6";
     newDiv.innerHTML = `
         
         <div class="joblist sm:flex justify-between sm:text-left text-center p-4 border-2 border-gray-500 rounded-lg bg-white hover:-translate-y-1.5 duration-300">
@@ -278,15 +258,11 @@ newDiv.classList = "space-y-6";
   }
 }
 
-
-deleteBtn.forEach(element => {
-  element.addEventListener("click", function(){
+deleteBtn.forEach((element) => {
+  element.addEventListener("click", function () {
     let parent = element.parentNode.parentNode;
-   console.log(parent);
-   parent.remove();
-calculateCount();
-
-  })
-
-  
+    console.log(parent);
+    parent.remove();
+    calculateCount();
+  });
 });

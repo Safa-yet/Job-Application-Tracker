@@ -4,14 +4,14 @@ let rejectList = [];
 
 let currentStatus = "all-job-list";
 
-let counter = document.getElementById("counter")
-
-let mainCon = document.getElementById("main");
 //  Counter
+let counter = document.getElementById("counter")
 let interViewCount = document.getElementById("interview-count");
 let rejectCount = document.getElementById("rejected-count");
+let totalNum = document.querySelectorAll(".total");
 
 // ALl section
+let mainCon = document.getElementById("main");
 let allJobList = document.getElementById("all-job-list");
 let allJobSec = document.getElementById("all-job-list");
 let interviewSec = document.getElementById("interview-list");
@@ -21,6 +21,7 @@ let rejectSec = document.getElementById("reject-list");
 let allBtn = document.getElementById("all-btn");
 let interviewBtn = document.getElementById("interview-btn");
 let rejectBtn = document.getElementById("reject-btn");
+let deleteBtn = document.querySelectorAll('.deleteBtn');
 
 // Empty Div
 
@@ -28,12 +29,11 @@ let interviewEmpty = document.getElementById("interview-empty");
 let rejectEmpty = document.getElementById("reject-empty")
 
 
-let deleteBtn = document.querySelectorAll('.deleteBtn');
 
+/*====================
+ *  Update Counter
+ ====================*/
 
-
-
-let totalNum = document.querySelectorAll(".total");
 function calculateCount() {
 
   let total = allJobList.children.length
@@ -65,7 +65,10 @@ function calculateCount() {
 
 calculateCount();
 
-// Show Section And Button With Click
+/*===============================
+ *  Show Section And Button With Click
+ =====================================*/
+
 
 function showOnly(id, btn) {
   allJobSec.classList.add("hidden");
@@ -95,6 +98,12 @@ function showOnly(id, btn) {
   }
   calculateCount();
 }
+
+/*======================================
+ *  Use Event Delegation on Main Conatiner
+ =====================================*/
+
+
 
 mainCon.addEventListener("click", function (event) {
   if (event.target.classList.contains("interViewBtn")) {
@@ -175,7 +184,10 @@ mainCon.addEventListener("click", function (event) {
 
 
 
-// Render
+/*===============================
+ *  Interview Rednder Function
+ =====================================*/
+
 
 function interviewRender() {
   interviewSec.innerHTML = "";
@@ -220,6 +232,11 @@ newDiv.classList = "space-y-6";
     interviewSec.appendChild(newDiv);
   }
 }
+
+/*===============================
+ *  Reject Rednder Function
+ =====================================*/
+
 
 function rejectRender() {
   rejectSec.innerHTML = "";

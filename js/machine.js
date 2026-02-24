@@ -12,7 +12,6 @@ let totalNum = document.querySelectorAll(".total");
 
 // ALl section
 let mainCon = document.getElementById("main");
-let allJobList = document.getElementById("all-job-list");
 let allJobSec = document.getElementById("all-job-list");
 let interviewSec = document.getElementById("interview-list");
 let rejectSec = document.getElementById("reject-list");
@@ -33,10 +32,10 @@ let rejectEmpty = document.getElementById("reject-empty");
  ====================*/
 
 function calculateCount() {
-  let total = allJobList.children.length;
+  let total = allJobSec.children.length;
   let interviewCounter = interViewList.length;
   let rejectCounter = rejectList.length;
-  let allJobCount = allJobList.children.length;
+  let allJobCount = allJobSec.children.length;
   // Total Counter
   totalNum.forEach((element) => {
     element.innerText = allJobCount;

@@ -103,7 +103,11 @@ mainCon.addEventListener("click", function (event) {
     let workFlow = parentNodes.querySelector(".work-type").innerText;
     let status = parentNodes.querySelector(".status").innerText;
     let jobBio = parentNodes.querySelector(".job-bio").innerText;
-    parentNodes.querySelector(".status").innerText = "Interview";
+
+let statusBtn = parentNodes.querySelector(".status");
+statusBtn.innerText = "Interview";
+statusBtn.style.backgroundColor = "#bbf7d0";
+statusBtn.style.color = "#16a34a";
 
     let jobCard = {
       jobTitle,
@@ -139,7 +143,11 @@ mainCon.addEventListener("click", function (event) {
     let workFlow = parentNodes.querySelector(".work-type").innerText;
     let status = parentNodes.querySelector(".status").innerText;
     let jobBio = parentNodes.querySelector(".job-bio").innerText;
-    parentNodes.querySelector(".status").innerText = "Reject";
+
+let statusBtn = parentNodes.querySelector(".status");
+statusBtn.innerText = "Reject";
+statusBtn.style.backgroundColor = "#fecaca";
+statusBtn.style.color = "#dc2626";
 
     let jobCard = {
       jobTitle,
@@ -164,6 +172,16 @@ mainCon.addEventListener("click", function (event) {
     if (currentStatus == "reject-list") {
       rejectRender();
     }
+    calculateCount();
+  }  else if (event.target.closest(".deleteBtn")) {
+    let parent = event.target.closest(".joblist");
+    let jobTitle = parent.querySelector(".jobTitle").innerText;
+
+    interViewList = interViewList.filter(item => item.jobTitle !== jobTitle);
+
+    rejectList = rejectList.filter(item => item.jobTitle !== jobTitle);
+
+    parent.remove();
     calculateCount();
   }
 });
@@ -205,7 +223,7 @@ function interviewRender() {
             </div>
         </div>
         <div>
-            <button class="border-2 rounded-lg active:bg-green-700 active:text-white  p-2 cursor-pointer text-green-700"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="deleteBtn border-2 rounded-lg active:bg-green-700 active:text-white  p-2 cursor-pointer text-green-700"><i class="fa-solid fa-trash-can"></i></button>
         </div>
     </div>
         `;
@@ -249,7 +267,7 @@ function rejectRender() {
             </div>
         </div>
         <div>
-            <button class="border-2 rounded-lg active:bg-green-700 active:text-white  p-2 cursor-pointer text-green-700"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="deleteBtn border-2 rounded-lg active:bg-green-700 active:text-white  p-2 cursor-pointer text-green-700"><i class="fa-solid fa-trash-can"></i></button>
         </div>
     </div>
         `;
@@ -257,11 +275,11 @@ function rejectRender() {
   }
 }
 
-deleteBtn.forEach((element) => {
-  element.addEventListener("click", function () {
-    let parent = element.parentNode.parentNode;
-    console.log(parent);
-    parent.remove();
-    calculateCount();
-  });
-});
+// deleteBtn.forEach((element) => {
+//   element.addEventListener("click", function () {
+//     let parent = element.parentNode.parentNode;
+//     console.log(parent);
+//     parent.remove();
+//     calculateCount();
+//   });
+// });
